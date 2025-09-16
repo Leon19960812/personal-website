@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Minimal Personal Homepage</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        --accent: #0f172a;
+        --muted: #475569;
+        --border: #e2e8f0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #ffffff;
+        color: var(--accent);
+      }
+
+      main {
+        max-width: 720px;
+        margin: 96px auto;
+        padding: 0 24px 120px;
+      }
+
+      header {
+        margin-bottom: 64px;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 7vw, 3.2rem);
+        margin: 0 0 12px;
+        font-weight: 600;
+      }
+
+      p.lead {
+        margin: 0;
+        max-width: 52ch;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      ul.menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 18px;
+      }
+
+      .menu button {
+        appearance: none;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px 22px;
+        background: #f8fafc;
+        color: var(--accent);
+        font-size: 1rem;
+        font-weight: 500;
+        text-align: left;
+        width: 100%;
+        cursor: pointer;
+        transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+      }
+
+      .menu button:focus-visible {
+        outline: 2px solid #0ea5e9;
+        outline-offset: 3px;
+      }
+
+      .menu button:hover {
+        border-color: #cbd5f5;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+        transform: translateY(-1px);
+      }
+
+      .terminal {
+        margin-top: 14px;
+        border-radius: 16px;
+        background: #0d1117;
+        color: #e2e8f0;
+        font-family: "Fira Code", "SFMono-Regular", Menlo, Consolas, monospace;
+        padding: 20px 22px;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .terminal::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(180deg, rgba(226, 232, 240, 0.08), transparent 35%);
+        mix-blend-mode: screen;
+      }
+
+      .terminal__header {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .terminal__dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #94a3b8;
+      }
+
+      .terminal__dot:nth-child(1) {
+        background: #ef4444;
+      }
+
+      .terminal__dot:nth-child(2) {
+        background: #facc15;
+      }
+
+      .terminal__dot:nth-child(3) {
+        background: #22c55e;
+      }
+
+      .terminal__body {
+        font-size: 0.95rem;
+        white-space: pre-wrap;
+        line-height: 1.7;
+        color: #c2f5d3;
+        min-height: 120px;
+      }
+
+      .caret {
+        display: inline-block;
+        width: 10px;
+        margin-left: 2px;
+        background: transparent;
+        color: #34d399;
+      }
+
+      .caret.blink {
+        animation: blink 900ms steps(1) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      footer {
+        margin-top: 96px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 600px) {
+        main {
+          margin-top: 72px;
+          padding: 0 18px 96px;
+        }
+
+        .terminal__body {
+          min-height: 96px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Your Name</h1>
+        <p class="lead">
+          Minimal personal site. Click an item to reveal the details below in a playful pseudo-terminal.
+        </p>
+      </header>
+
+      <ul class="menu">
+        <li>
+          <button type="button" data-terminal="contact">Contact</button>
+          <div class="terminal" hidden>
+            <div class="terminal__header">
+              <span class="terminal__dot"></span>
+              <span class="terminal__dot"></span>
+              <span class="terminal__dot"></span>
+            </div>
+            <div class="terminal__body" aria-live="polite"></div>
+          </div>
+        </li>
+        <li>
+          <button type="button" data-terminal="papers">Papers</button>
+          <div class="terminal" hidden>
+            <div class="terminal__header">
+              <span class="terminal__dot"></span>
+              <span class="terminal__dot"></span>
+              <span class="terminal__dot"></span>
+            </div>
+            <div class="terminal__body" aria-live="polite"></div>
+          </div>
+        </li>
+        <li>
+          <button type="button" data-terminal="projects">Projects</button>
+          <div class="terminal" hidden>
+            <div class="terminal__header">
+              <span class="terminal__dot"></span>
+              <span class="terminal__dot"></span>
+              <span class="terminal__dot"></span>
+            </div>
+            <div class="terminal__body" aria-live="polite"></div>
+          </div>
+        </li>
+        <li>
+          <button type="button" data-terminal="links">Elsewhere</button>
+          <div class="terminal" hidden>
+            <div class="terminal__header">
+              <span class="terminal__dot"></span>
+              <span class="terminal__dot"></span>
+              <span class="terminal__dot"></span>
+            </div>
+            <div class="terminal__body" aria-live="polite"></div>
+          </div>
+        </li>
+      </ul>
+
+      <footer>
+        Crafted with a light, minimal touch. Edit the data in the script to make it yours.
+      </footer>
+    </main>
+
+    <script>
+      const terminalScripts = {
+        contact: [
+          "$ whoami",
+          "Name: Your Name",
+          "Email: your@email.com",
+          "Location: City, Country",
+          "Status: Available for new collaborations"
+        ],
+        papers: [
+          "$ open scholar_profile",
+          "Latest publication:",
+          "Your Name, Minimal Interfaces for Maximum Focus (2025)",
+          "DOI: 10.0000/minimal.2025",
+          "Link: https://scholar.google.com/your-profile"
+        ],
+        projects: [
+          "$ ls projects/featured",
+          "01  ambient-terminal -- playful prompt-driven UI demo",
+          "02  mindful-reading  -- adaptive reading companion",
+          "03  zero-noise       -- minimalist homepage template"
+        ],
+        links: [
+          "$ cat links.md",
+          "GitHub     https://github.com/your-handle",
+          "LinkedIn   https://linkedin.com/in/your-handle",
+          "Newsletter https://yourdomain.com/newsletter"
+        ]
+      };
+
+      let activeSession = null;
+
+      function typewriter(target, lines, speed = 28) {
+        let timeoutId = null;
+        let stopped = false;
+        const output = document.createElement("span");
+        const caret = document.createElement("span");
+        caret.className = "caret";
+        caret.textContent = "_";
+
+        target.innerHTML = "";
+        target.append(output, caret);
+
+        let lineIndex = 0;
+        let charIndex = 0;
+
+        function typeNext() {
+          if (stopped) {
+            return;
+          }
+
+          const currentLine = lines[lineIndex] ?? "";
+
+          if (charIndex < currentLine.length) {
+            output.textContent += currentLine.charAt(charIndex);
+            charIndex += 1;
+            timeoutId = setTimeout(typeNext, speed);
+            return;
+          }
+
+          if (lineIndex < lines.length - 1) {
+            output.textContent += "\n";
+            lineIndex += 1;
+            charIndex = 0;
+            timeoutId = setTimeout(typeNext, speed);
+            return;
+          }
+
+          caret.classList.add("blink");
+        }
+
+        typeNext();
+
+        return {
+          stop() {
+            stopped = true;
+            if (timeoutId) {
+              clearTimeout(timeoutId);
+            }
+            caret.classList.remove("blink");
+          }
+        };
+      }
+
+      function handleClick(event) {
+        const button = event.currentTarget;
+        const key = button.dataset.terminal;
+        const panel = button.nextElementSibling;
+        const body = panel.querySelector(".terminal__body");
+
+        if (!terminalScripts[key]) {
+          return;
+        }
+
+        document
+          .querySelectorAll(".terminal")
+          .forEach((node) => {
+            if (node !== panel) {
+              node.hidden = true;
+            }
+          });
+
+        panel.hidden = false;
+
+        activeSession?.stop();
+        activeSession = typewriter(body, terminalScripts[key]);
+      }
+
+      document.querySelectorAll("[data-terminal]").forEach((button) => {
+        button.addEventListener("click", handleClick);
+      });
+    </script>
+  </body>
+</html>
